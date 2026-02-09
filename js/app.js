@@ -53,8 +53,10 @@ console.log(groupCollectionByCard(collection));
 
 document.addEventListener("DOMContentLoaded", async () => {
   const collection = await getCollection();
+  console.log("COLLECTION RAW:", collection);
   renderCollection(collection);
 });
+
 
 const testCard = {
   id: 999,

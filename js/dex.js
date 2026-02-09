@@ -22,11 +22,19 @@ function createDexCard(cardData) {
     <img src="${cardData.image}" alt="${cardData.name}">
     <h2>${cardData.name}</h2>
     <p>Tipo: ${cardData.type}</p>
-    <button data-id="${cardData.id}">Agregar</button>
+    <button class="add-btn">Agregar</button>
   `;
+
+  const button = card.querySelector(".add-btn");
+
+  button.addEventListener("click", async () => {
+    await addToCollection(cardData);
+    alert(`${cardData.name} agregada a tu colección`);
+  });
 
   return card;
 }
+
 
 function renderDex(cards) {
   const container = document.getElementById("dexList");

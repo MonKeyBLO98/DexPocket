@@ -36,3 +36,10 @@ body {
   text-align: center;
 }
 
+.card img {
+  width: 100%;
+  aspect-ratio: 63 / 88; /* proporción carta */
+  object-fit: cover;
+}
+
+

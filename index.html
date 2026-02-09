@@ -2,18 +2,46 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>DexPocket</title>
+  <title>DexPocket | Mi Colección</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <nav>
-    <a href="index.html">Mi colección</a>
-    <a href="dex.html">Dex</a>
-  </nav>
+  <!-- HEADER -->
+  <header class="header">
+    <h1>DexPocket</h1>
 
-  <h1>DexPocket</h1>
-  <p>Mi colección de cartas Pokémon TCG</p>
+    <nav class="nav">
+      <a href="index.html" class="active">Colección</a>
+      <a href="dex.html">Dex</a>
+    </nav>
+  </header>
+
+  <!-- CONTROLES -->
+  <section class="controls">
+    <input type="text" placeholder="Buscar carta..." id="searchInput">
+
+    <select id="filterType">
+      <option value="">Todos los tipos</option>
+      <option value="fire">Fuego</option>
+      <option value="water">Agua</option>
+      <option value="grass">Planta</option>
+    </select>
+  </section>
+
+  <!-- LISTADO DE CARTAS -->
+  <main class="card-grid" id="collection">
+    
+    <!-- Carta ejemplo -->
+    <article class="card">
+      <img src="assets/img/placeholder.png" alt="Carta Pokémon">
+      <h2>Pikachu</h2>
+      <p>Tipo: Eléctrico</p>
+    </article>
+
+  </main>
 
   <script src="js/app.js"></script>
 </body>

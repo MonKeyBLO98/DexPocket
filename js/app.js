@@ -39,20 +39,21 @@ function createCard(cardData) {
   const minusBtn = card.querySelector(".minus");
 
   plusBtn.addEventListener("click", async () => {
-    await addToCollection({
-      id: cardData.cardId,
-      name: cardData.name,
-      type: cardData.type,
-      image: cardData.image
-    });
-
-    refreshCollection();
+  await addToCollection({
+    id: cardData.cardId,
+    name: cardData.name,
+    type: cardData.type,
+    image: cardData.image
   });
+
+  refreshCollection();
+});
+
 
   minusBtn.addEventListener("click", async () => {
-    await removeOneFromCollection(cardData.cardId);
-    refreshCollection();
-  });
+  await removeOneFromCollection(cardData.cardId);
+  refreshCollection();
+});
 
   return card;
 }
@@ -64,14 +65,15 @@ function renderCollection(collection) {
   const container = document.getElementById("collection");
   container.innerHTML = "";
 
-  updateCollectionSummary(collection);
-
   const groupedCards = groupCollectionByCard(collection);
 
   groupedCards.forEach(cardData => {
     container.appendChild(createCard(cardData));
   });
 }
+
+
+
 
 
 
@@ -118,8 +120,11 @@ function groupCollectionByCard(collection) {
 
 async function refreshCollection() {
   const collection = await getCollection();
+
+  updateCollectionSummary(collection);
   renderCollection(collection);
 }
+
 
 function updateCollectionSummary(collection) {
   const total = collection.length;

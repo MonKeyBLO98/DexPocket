@@ -41,3 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
   renderDex(dexData);
 });
 
+button.addEventListener("click", async () => {
+  await addToCollection(cardData);
+  alert(`${cardData.name} agregada a tu colección`);
+});
+

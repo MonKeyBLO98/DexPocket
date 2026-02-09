@@ -42,7 +42,20 @@ function renderCollection(cards) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderCollection(collectionData);
+document.addEventListener("DOMContentLoaded", async () => {
+  const collection = await getCollection();
+  renderCollection(collection);
 });
+
+const testCard = {
+  id: 999,
+  name: "Pikachu",
+  type: "Eléctrico",
+  image: "assets/img/placeholder.png"
+};
+
+addToCollection(testCard).then(() => {
+  console.log("Carta guardada");
+});
+
 

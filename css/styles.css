@@ -84,4 +84,12 @@ body {
   background: #555;
 }
 
+.collection-summary {
+  display: flex;
+  gap: 16px;
+  padding: 0.75rem 1rem;
+  background: #f2f2f2;
+  font-weight: bold;
+}
+
 

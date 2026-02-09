@@ -64,15 +64,15 @@ function renderCollection(collection) {
   const container = document.getElementById("collection");
   container.innerHTML = "";
 
+  updateCollectionSummary(collection);
+
   const groupedCards = groupCollectionByCard(collection);
 
   groupedCards.forEach(cardData => {
     container.appendChild(createCard(cardData));
   });
-  console.log(collection);
-console.log(groupCollectionByCard(collection));
-
 }
+
 
 
 
@@ -121,4 +121,13 @@ async function refreshCollection() {
   renderCollection(collection);
 }
 
+function updateCollectionSummary(collection) {
+  const total = collection.length;
+
+  const uniqueIds = new Set(collection.map(card => card.cardId));
+  const unique = uniqueIds.size;
+
+  document.getElementById("totalCount").textContent = `Cartas: ${total}`;
+  document.getElementById("uniqueCount").textContent = `Únicas: ${unique}`;
+}
 

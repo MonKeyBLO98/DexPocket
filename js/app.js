@@ -34,6 +34,7 @@ function createCard(cardData) {
 }
 
 
+
 function renderCollection(collection) {
   const container = document.getElementById("collection");
   container.innerHTML = "";
@@ -41,10 +42,13 @@ function renderCollection(collection) {
   const groupedCards = groupCollectionByCard(collection);
 
   groupedCards.forEach(cardData => {
-    const cardElement = createCard(cardData);
-    container.appendChild(cardElement);
+    container.appendChild(createCard(cardData));
   });
+  console.log(collection);
+console.log(groupCollectionByCard(collection));
+
 }
+
 
 
 document.addEventListener("DOMContentLoaded", async () => {

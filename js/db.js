@@ -59,3 +59,30 @@ async function getCollection() {
     request.onerror = () => reject(request.error);
   });
 }
+
+
+async function removeOneFromCollection(cardId) {
+  const db = await openDB();
+
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("collection", "readwrite");
+    const store = tx.objectStore("collection");
+
+    const request = store.getAll();
+
+    request.onsuccess = () => {
+      const items = request.result;
+      const itemToDelete = items.find(item => item.cardId === cardId);
+
+      if (!itemToDelete) {
+        resolve(false);
+        return;
+      }
+
+      store.delete(itemToDelete.uid);
+      resolve(true);
+    };
+
+    request.onerror = () => reject(request.error);
+  });
+}

@@ -27,11 +27,36 @@ function createCard(cardData) {
     <img src="${cardData.image}" alt="${cardData.name}">
     <h2>${cardData.name}</h2>
     <p>Tipo: ${cardData.type}</p>
-    <span class="count">x${cardData.count}</span>
+
+    <div class="card-controls">
+      <button class="minus">−</button>
+      <span class="count">x${cardData.count}</span>
+      <button class="plus">+</button>
+    </div>
   `;
+
+  const plusBtn = card.querySelector(".plus");
+  const minusBtn = card.querySelector(".minus");
+
+  plusBtn.addEventListener("click", async () => {
+    await addToCollection({
+      id: cardData.cardId,
+      name: cardData.name,
+      type: cardData.type,
+      image: cardData.image
+    });
+
+    refreshCollection();
+  });
+
+  minusBtn.addEventListener("click", async () => {
+    await removeOneFromCollection(cardData.cardId);
+    refreshCollection();
+  });
 
   return card;
 }
+
 
 
 
@@ -89,6 +114,11 @@ function groupCollectionByCard(collection) {
   });
 
   return Object.values(grouped);
+}
+
+async function refreshCollection() {
+  const collection = await getCollection();
+  renderCollection(collection);
 }
 
 

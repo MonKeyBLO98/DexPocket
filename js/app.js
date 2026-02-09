@@ -65,7 +65,7 @@ function renderCollection(collection) {
   const container = document.getElementById("collection");
   container.innerHTML = "";
 
-const groupedCards = groupCollectionByCard(collection);
+  const groupedCards = Object.values(grouped);
 
 console.table(groupedCards.map(c => ({
   name: c.name,
@@ -74,14 +74,11 @@ console.table(groupedCards.map(c => ({
 
 
   // 👉 ORDENAR POR CANTIDAD (descendente)
-  groupedCards.sort((a, b) => b.count - a.count);
+groupedCards.sort((a, b) => b.count - a.count);
 
   groupedCards.forEach(cardData => {
     container.appendChild(createCard(cardData));
   });
-
-
-
 
 }
 
@@ -113,23 +110,21 @@ function groupCollectionByCard(collection) {
   const grouped = {};
 
   collection.forEach(card => {
-    const key = card.cardId;
-
-    if (!grouped[key]) {
-      grouped[key] = {
+    if (!grouped[card.cardId]) {
+      grouped[card.cardId] = {
         cardId: card.cardId,
         name: card.name,
         type: card.type,
         image: card.image,
-        count: 1
+        count: 0
       };
-    } else {
-      grouped[key].count++;
     }
+    grouped[card.cardId].count++;
   });
 
   return Object.values(grouped);
 }
+
 
 async function refreshCollection() {
   const collection = await getCollection();

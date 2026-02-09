@@ -27,20 +27,25 @@ function createCard(cardData) {
     <img src="${cardData.image}" alt="${cardData.name}">
     <h2>${cardData.name}</h2>
     <p>Tipo: ${cardData.type}</p>
+    <span class="count">x${cardData.count}</span>
   `;
 
   return card;
 }
 
-function renderCollection(cards) {
+
+function renderCollection(collection) {
   const container = document.getElementById("collection");
   container.innerHTML = "";
 
-  cards.forEach(cardData => {
+  const groupedCards = groupCollectionByCard(collection);
+
+  groupedCards.forEach(cardData => {
     const cardElement = createCard(cardData);
     container.appendChild(cardElement);
   });
 }
+
 
 document.addEventListener("DOMContentLoaded", async () => {
   const collection = await getCollection();
@@ -57,5 +62,27 @@ const testCard = {
 addToCollection(testCard).then(() => {
   console.log("Carta guardada");
 });
+
+function groupCollectionByCard(collection) {
+  const grouped = {};
+
+  collection.forEach(card => {
+    const key = card.cardId;
+
+    if (!grouped[key]) {
+      grouped[key] = {
+        cardId: card.cardId,
+        name: card.name,
+        type: card.type,
+        image: card.image,
+        count: 1
+      };
+    } else {
+      grouped[key].count++;
+    }
+  });
+
+  return Object.values(grouped);
+}
 
 

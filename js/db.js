@@ -1,5 +1,5 @@
 const DB_NAME = "dexPocketDB";
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STORE_COLLECTION = "collection";
 
 function openDB() {
@@ -10,7 +10,11 @@ function openDB() {
       const db = event.target.result;
 
       if (!db.objectStoreNames.contains(STORE_COLLECTION)) {
-        db.createObjectStore(STORE_COLLECTION, { keyPath: "id" });
+        db.createObjectStore("collection", {
+      keyPath: "uid",
+      autoIncrement: true
+});
+
       }
     };
 
@@ -22,16 +26,25 @@ function openDB() {
 async function addToCollection(card) {
   const db = await openDB();
 
-  return new Promise((resolve, reject) => {
-    const tx = db.transaction(STORE_COLLECTION, "readwrite");
-    const store = tx.objectStore(STORE_COLLECTION);
+  const entry = {
+    cardId: card.id,
+    name: card.name,
+    type: card.type,
+    image: card.image,
+    addedAt: Date.now()
+  };
 
-    store.put(card);
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("collection", "readwrite");
+    const store = tx.objectStore("collection");
+
+    store.add(entry);
 
     tx.oncomplete = () => resolve();
     tx.onerror = () => reject(tx.error);
   });
 }
+
 
 async function getCollection() {
   const db = await openDB();

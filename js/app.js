@@ -65,7 +65,13 @@ function renderCollection(collection) {
   const container = document.getElementById("collection");
   container.innerHTML = "";
 
-  const groupedCards = groupCollectionByCard(collection);
+const groupedCards = groupCollectionByCard(collection);
+
+console.table(groupedCards.map(c => ({
+  name: c.name,
+  count: c.count
+})));
+
 
   // 👉 ORDENAR POR CANTIDAD (descendente)
   groupedCards.sort((a, b) => b.count - a.count);
@@ -73,6 +79,10 @@ function renderCollection(collection) {
   groupedCards.forEach(cardData => {
     container.appendChild(createCard(cardData));
   });
+
+
+
+
 }
 
 

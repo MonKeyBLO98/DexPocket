@@ -1,0 +1,38 @@
+[
+  {
+    "baseId": "pikachu-001",
+    "name": "Pikachu",
+    "cardType": "pokemon",
+    "phase": "basic",
+    "isEX": false,
+    "isMega": false,
+    "ps": 60,
+    "type": "electric",
+    "rarity": "1-diamond",
+    "image": "assets/cards/pikachu.png"
+  },
+  {
+    "baseId": "charizard-ex-006",
+    "name": "Charizard",
+    "cardType": "pokemon",
+    "phase": "stage2",
+    "isEX": true,
+    "isMega": false,
+    "ps": 180,
+    "type": "fire",
+    "rarity": "4-diamond",
+    "image": "assets/cards/charizard.png"
+  },
+  {
+    "baseId": "squirtle-007",
+    "name": "Squirtle",
+    "cardType": "pokemon",
+    "phase": "basic",
+    "isEX": false,
+    "isMega": false,
+    "ps": 50,
+    "type": "water",
+    "rarity": "1-diamond",
+    "image": "assets/cards/squirtle.png"
+  }
+]

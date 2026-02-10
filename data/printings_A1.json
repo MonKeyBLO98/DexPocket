@@ -1,0 +1,32 @@
+[
+  {
+    "printingId": "A1-001",
+    "baseId": "pikachu-001",
+    "collection": "A1",
+    "collectionName": "Genes Formidables",
+    "series": "A",
+    "year": 2025,
+    "number": 1,
+    "baseTotal": 226
+  },
+  {
+    "printingId": "A1-006",
+    "baseId": "charizard-ex-006",
+    "collection": "A1",
+    "collectionName": "Genes Formidables",
+    "series": "A",
+    "year": 2025,
+    "number": 6,
+    "baseTotal": 226
+  },
+  {
+    "printingId": "A1-007",
+    "baseId": "squirtle-007",
+    "collection": "A1",
+    "collectionName": "Genes Formidables",
+    "series": "A",
+    "year": 2025,
+    "number": 7,
+    "baseTotal": 226
+  }
+]

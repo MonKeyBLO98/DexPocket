@@ -65,16 +65,33 @@ function renderCollection(collection) {
   const container = document.getElementById("collection");
   container.innerHTML = "";
 
-  const groupedCards = Object.values(grouped);
+  const groupedCards = groupCollectionByCard(collection);
 
-console.table(groupedCards.map(c => ({
-  name: c.name,
-  count: c.count
-})));
+  // ordenar por colección + número
+  groupedCards.sort((a, b) => {
+    if (a.collection !== b.collection) {
+      return a.collection.localeCompare(b.collection);
+    }
+    return a.number - b.number;
+  });
+
+  groupedCards.forEach(cardData => {
+    container.appendChild(createCard(cardData));
+  });
+}
 
 
   // 👉 ORDENAR POR CANTIDAD (descendente)
-groupedCards.sort((a, b) => b.count - a.count);
+groupedCards.sort((a, b) => {
+  // primero por colección
+  if (a.collection !== b.collection) {
+    return a.collection.localeCompare(b.collection);
+  }
+
+  // después por número dentro de la colección
+  return a.number - b.number;
+});
+
 
   groupedCards.forEach(cardData => {
     container.appendChild(createCard(cardData));

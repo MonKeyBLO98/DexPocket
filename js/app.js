@@ -67,7 +67,6 @@ function renderCollection(collection) {
 
   const groupedCards = groupCollectionByCard(collection);
 
-  // ordenar por colección + número
   groupedCards.sort((a, b) => {
     if (a.collection !== b.collection) {
       return a.collection.localeCompare(b.collection);
@@ -79,6 +78,7 @@ function renderCollection(collection) {
     container.appendChild(createCard(cardData));
   });
 }
+
 
 
   // 👉 ORDENAR POR CANTIDAD (descendente)

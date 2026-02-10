@@ -53,6 +53,8 @@ function groupCollectionByCard(collection) {
   return Object.values(grouped);
 }
 
+console.log("app.js cargado");
+
 // 3️⃣ RENDER
 function renderCollection(collection) {
   const container = document.getElementById("collection");
@@ -70,6 +72,8 @@ function renderCollection(collection) {
   groupedCards.forEach(cardData => {
     container.appendChild(createCollectionCard(cardData));
   });
+  console.log("Renderizando colección:", groupedCards);
+
 }
 
 // 4️⃣ CONTADOR

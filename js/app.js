@@ -1,46 +1,34 @@
 // 1️⃣ CREA LA CARTA (PRIMERO)
-function createCard(cardData) {
+function createCollectionCard(cardData) {
   const card = document.createElement("article");
   card.classList.add("card");
 
   card.innerHTML = `
     <img src="${cardData.image}" alt="${cardData.name}">
     <h2>${cardData.name}</h2>
-    <p class="card-id">
-      ${cardData.collection}
-      ${String(cardData.number).padStart(3, "0")}/${cardData.baseTotal}
-    </p>
+    <p>${cardData.collection} ${cardData.number}/${cardData.baseTotal}</p>
+    <p>Cantidad: <strong>${cardData.count}</strong></p>
 
     <div class="card-controls">
-      <button class="minus">−</button>
-      <span class="count">x${cardData.count}</span>
-      <button class="plus">+</button>
+      <button class="add">+</button>
+      <button class="remove">−</button>
     </div>
   `;
 
-  const plusBtn = card.querySelector(".plus");
-  const minusBtn = card.querySelector(".minus");
-
-  plusBtn.addEventListener("click", async () => {
-    await addToCollection({
-      cardId: cardData.cardId,
-      name: cardData.name,
-      type: cardData.type,
-      image: cardData.image,
-      collection: cardData.collection,
-      number: cardData.number,
-      baseTotal: cardData.baseTotal
-    });
+  card.querySelector(".add").addEventListener("click", async () => {
+    await addToCollection(cardData);
     refreshCollection();
   });
 
-  minusBtn.addEventListener("click", async () => {
+  card.querySelector(".remove").addEventListener("click", async () => {
     await removeOneFromCollection(cardData.cardId);
     refreshCollection();
   });
 
   return card;
 }
+
+
 
 // 2️⃣ AGRUPAR
 function groupCollectionByCard(collection) {
@@ -80,7 +68,7 @@ function renderCollection(collection) {
   });
 
   groupedCards.forEach(cardData => {
-    container.appendChild(createCard(cardData));
+    container.appendChild(createCollectionCard(cardData));
   });
 }
 

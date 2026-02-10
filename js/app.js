@@ -1,4 +1,4 @@
-console.log("HORA: 10.11");
+console.log("HORA: 10.22");
 // 1️⃣ CREA LA CARTA (PRIMERO)
 function createCollectionCard(cardData) {
   const card = document.createElement("article");
@@ -17,7 +17,7 @@ function createCollectionCard(cardData) {
   `;
 
   card.querySelector(".add").addEventListener("click", async () => {
-    await addToCollection(cardData);
+    await addOneFromCollection(cardData.cardId);
     refreshCollection();
   });
 

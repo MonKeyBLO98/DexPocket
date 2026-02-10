@@ -86,3 +86,34 @@ async function removeOneFromCollection(cardId) {
     request.onerror = () => reject(request.error);
   });
 }
+
+async function addOneFromCollection(cardId) {
+  const db = await openDB();
+
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction("collection", "readwrite");
+    const store = tx.objectStore("collection");
+
+    const request = store.getAll();
+
+    request.onsuccess = () => {
+      const items = request.result;
+      const baseCard = items.find(item => item.cardId === cardId);
+
+      if (!baseCard) {
+        resolve(false);
+        return;
+      }
+
+      const newCard = {
+        ...baseCard,
+        uid: crypto.randomUUID()
+      };
+
+      store.add(newCard);
+      resolve(true);
+    };
+
+    request.onerror = () => reject(request.error);
+  });
+}

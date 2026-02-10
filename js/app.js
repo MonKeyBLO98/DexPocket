@@ -1,3 +1,4 @@
+console.log("HORA: 10.11");
 // 1️⃣ CREA LA CARTA (PRIMERO)
 function createCollectionCard(cardData) {
   const card = document.createElement("article");

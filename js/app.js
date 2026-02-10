@@ -79,32 +79,6 @@ function renderCollection(collection) {
   });
 }
 
-
-
-  // 👉 ORDENAR POR CANTIDAD (descendente)
-groupedCards.sort((a, b) => {
-  // primero por colección
-  if (a.collection !== b.collection) {
-    return a.collection.localeCompare(b.collection);
-  }
-
-  // después por número dentro de la colección
-  return a.number - b.number;
-});
-
-
-  groupedCards.forEach(cardData => {
-    container.appendChild(createCard(cardData));
-  });
-
-}
-
-
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", async () => {
   const collection = await getCollection();
   console.log("COLLECTION RAW:", collection);

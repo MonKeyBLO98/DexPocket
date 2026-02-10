@@ -20,6 +20,50 @@ function groupCollectionByCard(collection) {
   return Object.values(grouped);
 }
 
+function createCard(cardData) {
+  const card = document.createElement("article");
+  card.classList.add("card");
+
+  card.innerHTML = `
+    <img src="${cardData.image}" alt="${cardData.name}">
+    <h2>${cardData.name}</h2>
+    <p class="card-id">
+      ${cardData.collection}
+      ${String(cardData.number).padStart(3, "0")}/${cardData.baseTotal}
+    </p>
+
+    <div class="card-controls">
+      <button class="minus">−</button>
+      <span class="count">x${cardData.count}</span>
+      <button class="plus">+</button>
+    </div>
+  `;
+
+  const plusBtn = card.querySelector(".plus");
+  const minusBtn = card.querySelector(".minus");
+
+  plusBtn.addEventListener("click", async () => {
+    await addToCollection({
+      cardId: cardData.cardId,
+      name: cardData.name,
+      type: cardData.type,
+      image: cardData.image,
+      collection: cardData.collection,
+      number: cardData.number,
+      baseTotal: cardData.baseTotal
+    });
+    refreshCollection();
+  });
+
+  minusBtn.addEventListener("click", async () => {
+    await removeOneFromCollection(cardData.cardId);
+    refreshCollection();
+  });
+
+  return card;
+}
+
+
 function renderCollection(collection) {
   const container = document.getElementById("collection");
   container.innerHTML = "";

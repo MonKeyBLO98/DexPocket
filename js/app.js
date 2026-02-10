@@ -38,6 +38,20 @@ function renderCollection(collection) {
   });
 }
 
+function updateCollectionSummary(collection) {
+  const total = collection.length;
+
+  const uniqueIds = new Set(collection.map(card => card.cardId));
+  const unique = uniqueIds.size;
+
+  const totalEl = document.getElementById("totalCount");
+  const uniqueEl = document.getElementById("uniqueCount");
+
+  if (totalEl) totalEl.textContent = `Cartas: ${total}`;
+  if (uniqueEl) uniqueEl.textContent = `Únicas: ${unique}`;
+}
+
+
 async function refreshCollection() {
   const collection = await getCollection();
   updateCollectionSummary(collection);

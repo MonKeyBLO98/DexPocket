@@ -93,3 +93,15 @@ async function refreshCollection() {
 }
 
 // 6️⃣
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log("DOMContentLoaded OK");
+
+  try {
+    const collection = await getCollection();
+    console.log("Collection obtenida:", collection);
+
+    renderCollection(collection);
+  } catch (e) {
+    console.error("ERROR en carga inicial:", e);
+  }
+});

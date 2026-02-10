@@ -52,6 +52,7 @@ function updateCollectionSummary(collection) {
 }
 
 
+
 async function refreshCollection() {
   const collection = await getCollection();
   updateCollectionSummary(collection);
